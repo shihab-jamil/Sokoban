@@ -36,6 +36,7 @@ char level[25][25];
 string current_level = "level1.txt";
 int current_level_number = 1;
 
+
 struct points{
    float x;
    float y;
@@ -49,13 +50,10 @@ struct points{
     $ = target point
 */
 
-
-/*  Handler for window-repaint event. Call back when the window first appears and
-    whenever the window needs to be re-painted. */
-
 struct points map_coordinate[22][22];
 const GLfloat map_coordinate_value[22] = {-3.3, -3.0, -2.7, -2.4, -2.1, -1.8, -1.5, -1.2, -0.9f, -0.6, -0.3, 0.0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0};
 struct points boxes[5];
+
 
 void initiate_map_coordinate(){
     int i, j, temp_i=0, temp_j=21;
@@ -104,7 +102,7 @@ int map_coordinate_value_index(GLfloat value , char direction){
 
 void draw_wall(GLfloat x, GLfloat y){
     glBegin(GL_QUADS);
-        glColor3f(0.7f, 0.3f, 0.3f);        // Blue
+        glColor3f(0.7f, 0.3f, 0.3f);        // redish
         glVertex2f(x, y);                  // Left vertex
         glVertex2f( x+0.3f, y);            // Top vertex
         glVertex2f( x+0.3f, y+0.3f);       // Right vertex
@@ -114,7 +112,7 @@ void draw_wall(GLfloat x, GLfloat y){
 
 void draw_target(GLfloat x, GLfloat y){
     glBegin(GL_QUADS);
-        glColor3f(0.0f, 1.0f, 1.0f);        // Blue
+        glColor3f(0.0f, 1.0f, 1.0f);        // cyan
         glVertex2f(x, y);                  // Left vertex
         glVertex2f( x+0.3f, y);            // Top vertex
         glVertex2f( x+0.3f, y+0.3f);       // Right vertex
@@ -150,7 +148,7 @@ void draw_boxes(){
     GLfloat x = boxes[i].x;
     GLfloat y = boxes[i].y;
     glBegin(GL_QUADS);                      // Each set of 3 vertices form a triangle
-        glColor3f(1.0f, 0.7f, 0.1f);        // Red
+        glColor3f(1.0f, 0.7f, 0.1f);        // dark yellow
         glVertex2f(x, y);                   // Left vertex
         glVertex2f( x+0.3f, y);             // Top vertex
         glVertex2f( x+0.3f, y+0.3f);        // Right vertex
@@ -326,7 +324,6 @@ bool is_box_movable(char side){
     }
 }
 
-
 bool is_man_movable(char side){
     int i, value_x, value_y;
     char ch;
@@ -398,7 +395,6 @@ bool is_man_movable(char side){
 
 }
 
-
 void read_file(string filename) {
     int i=0 , j=0;
     unsigned char character = 0;
@@ -450,12 +446,9 @@ void is_player_win(){
             read_file("level3.txt");
         }
 
-        cout << "Congratulations!!! Level Completed";
+        cout << "Congratulations!!! Level Completed" <<endl;
     }
 }
-
-
-
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);            // Clear the color buffer (background)
